@@ -30,6 +30,7 @@ module EarthquakeImporter
       quake.depth=row['Depth'].to_f
       quake.region=row['Region']
       quake.location={ :latitude => row['Lat'].to_f, :longitude => row['Lon'].to_f}
+      quake.time=row['Datetime']
       if quake.changed?
         quake.save!
         update_count+=1 unless is_insert
