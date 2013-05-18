@@ -7,7 +7,8 @@ gem 'rails', '3.2.13'
 
 gem "mongoid", "~> 3.0.0"
 gem 'mongoid_rails_migrations'
-gem 'mongoid_spacial'
+#gem 'mongoid_geospatial'
+#gem 'mongoid_spacial'
 
 gem 'curb'
 

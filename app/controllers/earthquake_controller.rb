@@ -6,7 +6,11 @@ class EarthquakeController < ApplicationController
       args=params[:near].split ','
       if args.count >= 2
         lat,long=args.map{|arg| arg.to_f}
-        criteria=Quake.where :location.near => [[long,lat],5]
+        #criteria=Quake.where :location.near => [long,lat]
+        #point=Mongoid::Geospatial::Point.new long, lat
+        #radius=point.radius 5
+        #criteria=Quake.within_circle :location => radius
+        #criteria=Quake.where :location.near => Quake.first.location
       end
     else
       criteria=Quake.all

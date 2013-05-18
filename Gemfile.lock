@@ -63,9 +63,6 @@ GEM
       bundler (>= 1.0.0)
       rails (>= 3.2.0)
       railties (>= 3.2.0)
-    mongoid_spacial (0.2.16)
-      activesupport (~> 3.0)
-      mongoid (>= 2.3.0)
     moped (1.4.5)
     multi_json (1.7.3)
     origin (1.1.0)
@@ -124,7 +121,6 @@ DEPENDENCIES
   jquery-rails
   mongoid (~> 3.0.0)
   mongoid_rails_migrations
-  mongoid_spacial
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
