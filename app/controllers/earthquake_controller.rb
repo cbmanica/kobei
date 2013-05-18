@@ -1,16 +1,13 @@
 class EarthquakeController < ApplicationController
   respond_to :json
+  EARTH_RADIUS=3959 # miles
 
   def index
     if params[:near]
       args=params[:near].split ','
       if args.count >= 2
         lat,long=args.map{|arg| arg.to_f}
-        #criteria=Quake.where :location.near => [long,lat]
-        #point=Mongoid::Geospatial::Point.new long, lat
-        #radius=point.radius 5
-        #criteria=Quake.within_circle :location => radius
-        #criteria=Quake.where :location.near => Quake.first.location
+        criteria=Quake.where(:location => {"$within" => {"$centerSphere" => [[long,lat], dist_radius.fdiv(EARTH_RADIUS)]}})
       end
     else
       criteria=Quake.all
@@ -26,5 +23,10 @@ class EarthquakeController < ApplicationController
       criteria=criteria.between :time => start_time..end_time
     end
     respond_with criteria
+  end
+
+  private
+  def dist_radius
+    5 # miles
   end
 end
