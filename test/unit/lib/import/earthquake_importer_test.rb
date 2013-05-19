@@ -20,5 +20,9 @@ describe EarthquakeImporter do
     assert_in_delta -140.6652, q.location[0], FLOAT_TOLERANCE
     test_date=DateTime.strptime "20130519-140334", "%Y%m%d-%H%M%S"
     assert_equal test_date, q.time
+
+    # Make sure we don't import duplicates
+    EarthquakeImporter.send :parse_data, test_data
+    assert_equal 2, Quake.count
   end
 end
