@@ -7,7 +7,15 @@ http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt
 
 https://explore.data.gov/Geography-and-Environment/Worldwide-M1-Earthquakes-Past-7-Days/7tag-iwnu
 
+== Information
+
+Data is stored in a Mongo database and uses Mongoid as an ActiveRecord replacement.
+
 == Usage
+
+Import data via <tt>rake import:earthquake</tt>
+
+Test via <tt>rake minitest:all</tt>
 
 GET /earthquakes.json
 # Returns all earthquakes
