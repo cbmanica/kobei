@@ -23,14 +23,15 @@ information provided by the USGS:
 The API provides the following methods:
 <ul>
   <li>All earthquakes (system up since May 18, 2013) <a href="earthquakes">/earthquakes</a></li>
-  <li>All earthquakes on the day of <em>timestamp</em> (Unix epoch time)
-    <a href="earthquakes?on=<%= (DateTime.now-1.day).to_i %>">/earthquakes?on=<em>timestamp</em></a></li>
-  <li>All earthquakes since <em>timestamp</em> (Unix epoch time)
-    <a href="earthquakes?since=<%= (DateTime.now-2.days).to_i %>">/earthquakes?since=<em>timestamp</em></a></li>
-  <li>All earthquakes with magnitude greater than <em>value</em> (float)
-    <a href="earthquakes?over=3.5">/earthquakes?over=<em>value</em></a></li>
-  <li>All earthquakes within 5 miles of <em>latitude</em>,<em>longitude</em> (floats)
-    <a href="earthquakes?near=38.8,-122.79">/earthquakes?near=<em>latitude</em>,<em>longitude</em></a></li>
+  <li>All earthquakes on the day of <strong>timestamp</strong> (Unix epoch time)
+    <br/><a href="earthquakes?on=<%= (DateTime.now-1.day).to_i %>">/earthquakes?on=<strong>timestamp</strong></a></li>
+  <li>All earthquakes since <strong>timestamp</strong> (Unix epoch time)
+    <br/><a href="earthquakes?since=<%= (DateTime.now-2.days).to_i %>">/earthquakes?since=<strong>timestamp</strong></a></li>
+  <li>All earthquakes with magnitude greater than <strong>value</strong> (float)
+    <br/><a href="earthquakes?over=3.5">/earthquakes?over=<strong>value</strong></a></li>
+  <li>All earthquakes within the specified <em>radius</em> (default is 5) <em>units</em> ('mi' or 'km', default is 'mi') of <strong>latitude</strong>,<strong>longitude</strong> (floats)
+    <br/><a href="earthquakes?near=38.8,-122.79">/earthquakes?near=<strong>latitude</strong>,<strong>longitude</strong>[&amp;radius=<em>radius</em>&amp;units=<em>units</em>]</a>
+  </li>
 </ul>
 
 The parameters can be combined for hybrid queries.

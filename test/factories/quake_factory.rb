@@ -20,4 +20,15 @@ FactoryGirl.define do
     time DateTime.strptime "20120519-140334", "%Y%m%d-%H%M%S"
     region 'Southeastern Baz'
   end
+
+  factory :quake3, class: Quake do
+    eid 94
+    latitude 44.7
+    longitude -113
+    location [-113, 45.3]
+    magnitude 6.8
+    depth 14
+    time DateTime.strptime "20120519-140334", "%Y%m%d-%H%M%S"
+    region 'Southeastern Baz'
+  end
 end

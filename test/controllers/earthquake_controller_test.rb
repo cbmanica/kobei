@@ -1,5 +1,5 @@
 require_relative '../test_helper'
-require File.join Rails.root, 'app/controllers/earthquake_controller'
+require File.join Rails.root, 'app/controllers/earthquakes_controller'
 
 class EarthquakeControllerTest < ActionController::TestCase
   describe EarthquakesController do
@@ -31,9 +31,39 @@ class EarthquakeControllerTest < ActionController::TestCase
     end
 
     it 'must search by geo' do
+      # Defaults to 5 miles
       get :index, :format => 'json', :near => '45.3,-113.4'
       assert_response :success
       json=JSON.parse response.body
+      assert_equal 1, json.count
+      assert_equal '16', json[0]['eid']
+
+      # Invalid units
+      get :index, :format => 'json', :near => '45.3,-113.4', :units => 'invalid'
+      assert_response :success
+      json=JSON.parse response.body
+      assert_equal 1, json.count
+      assert_equal '16', json[0]['eid']
+
+      FactoryGirl.create :quake3
+      get :index, :format => 'json', :near => '45.3,-113.4'
+      assert_response :success
+      json=JSON.parse response.body
+      assert_equal 1, json.count
+      assert_equal '16', json[0]['eid']
+
+      # Expand the radius
+      get :index, :format => 'json', :near => '45.3,-113.4', :radius => '25'
+      assert_response :success
+      json=JSON.parse response.body
+      # Should return both now
+      assert_equal 2, json.count
+
+      # Change units to km
+      get :index, :format => 'json', :near => '45.3,-113.4', :radius => '25', :units => 'km'
+      assert_response :success
+      json=JSON.parse response.body
+      # Radius is effectively cut in half, we should only get one again
       assert_equal 1, json.count
       assert_equal '16', json[0]['eid']
     end
