@@ -3,6 +3,8 @@ class Quake
 
   field :location, :type => Array
 
+  field :latitude, :type => Float
+  field :longitude, :type => Float
   field :eid, type: String
   field :magnitude, type: Float
   field :depth, type: Float

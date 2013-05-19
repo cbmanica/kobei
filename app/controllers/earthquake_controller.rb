@@ -22,7 +22,7 @@ class EarthquakeController < ApplicationController
       start_time=since || on.midnight
       criteria=criteria.between :time => start_time..end_time
     end
-    respond_with criteria
+    respond_with criteria, :except => :location
   end
 
   private
