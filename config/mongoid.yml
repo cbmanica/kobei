@@ -1,18 +1,6 @@
-<%
-  if ENV['MONGOHQ_URL']
-    db = URI.parse(ENV['MONGOHQ_URL'])
-    db_name = db.path.gsub(/^\//, '')
-  end
-%>
-
 production:
   sessions:
     default:
-#      database: <%= db_name %>
-#      hosts:
-#        - <%= "#{db.host}:#{db.port}" %>
-#      username: <%= db.user %>
-#      password: <%= db.password %>
       uri: <%= ENV['MONGOHQ_URL'] %>
 development:
   # Configure available database sessions. (required)

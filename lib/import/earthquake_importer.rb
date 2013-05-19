@@ -8,15 +8,24 @@ require 'csv'
 # Src,Eqid,Version,Datetime,Lat,Lon,Magnitude,Depth,NST,Region
 module EarthquakeImporter
   def self.import
-    response=Curl::Easy.perform 'http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt'
-    unless response.status == '200 OK'
-      puts "Failed to fetch earthquake data: #{response.status}"
-      return
-    end
+    data=fetch_data
+    self.parse_data response.body_str if data
+  end
+
+  private
+  def self.fetch_data
+    response=Curl::Easy.perform 'http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt' rescue nil
+    return response.body_str if response.status == '200 OK'
+    puts "Failed to fetch earthquake data: #{response ? response.status : '<response was nil>'}"
+    nil
+  end
+
+  def self.parse_data(data)
+    return unless data
     insert_count=0
     update_count=0
     total=0
-    CSV.parse response.body_str, :headers => true do |row|
+    CSV.parse data, :headers => true do |row|
       total+=1
       quake=Quake.where(:eid => row['Eqid']).first
       is_insert=false
@@ -30,6 +39,8 @@ module EarthquakeImporter
       quake.depth=row['Depth'].to_f
       quake.region=row['Region']
       quake.location=[row['Lon'].to_f, row['Lat'].to_f]
+      quake.latitude=quake.location[1]
+      quake.longitude=quake.location[0]
       quake.time=row['Datetime']
       if quake.changed?
         quake.save!
