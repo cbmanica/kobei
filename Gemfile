@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+# Necessary to get Heroku to run the right Ruby version for Mongoid
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 
@@ -34,7 +35,8 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
+gem 'unicorn-rails'
 
 # Deploy with Capistrano
 # gem 'capistrano'
