@@ -13,7 +13,7 @@ Data is stored in a Mongo database and uses Mongoid as an ActiveRecord replaceme
 
 == Usage
 
-Import data via <tt>rake import:earthquake</tt>
+Import data via <tt>rake import:earthquakes</tt>
 
 Test via <tt>rake minitest:all</tt>
 
