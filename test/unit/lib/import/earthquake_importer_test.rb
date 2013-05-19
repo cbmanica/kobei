@@ -25,4 +25,12 @@ describe EarthquakeImporter do
     EarthquakeImporter.send :parse_data, test_data
     assert_equal 2, Quake.count
   end
+
+  # The USGS web site seems to be a little flaky, so this may occasionally fail.
+  it 'must fetch data from the USGS' do
+    response=EarthquakeImporter.send :fetch_data
+    refute_nil response
+    # Do minimal verification that the file format looks ok
+    assert response =~ /Src,Eqid,Version,Datetime,Lat,Lon,Magnitude,Depth,NST,Region/
+  end
 end
