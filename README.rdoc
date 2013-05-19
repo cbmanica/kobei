@@ -4,6 +4,7 @@ This is kobei, a demonstration project to provide an API in front of real-time e
 information provided by the USGS.
 
 http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt
+
 https://explore.data.gov/Geography-and-Environment/Worldwide-M1-Earthquakes-Past-7-Days/7tag-iwnu
 
 == Usage
