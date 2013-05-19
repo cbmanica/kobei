@@ -2,7 +2,7 @@ require 'csv'
 
 # Source data is
 #
-# http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt
+# http://earthquakes.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt
 #
 # CSV headings:
 # Src,Eqid,Version,Datetime,Lat,Lon,Magnitude,Depth,NST,Region
@@ -14,9 +14,9 @@ module EarthquakeImporter
 
   private
   def self.fetch_data
-    response=Curl::Easy.perform 'http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt' rescue nil
+    response=Curl::Easy.perform 'http://earthquakes.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt' rescue nil
     return response.body_str if response.status == '200 OK'
-    puts "Failed to fetch earthquake data: #{response ? response.status : '<response was nil>'}"
+    puts "Failed to fetch earthquakes data: #{response ? response.status : '<response was nil>'}"
     nil
   end
 

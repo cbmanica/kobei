@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to kobei</title>
+</head>
+<body>
+This is kobei, a demonstration project to provide a JSON API in front of real-time earthquake
+information provided by the USGS:
+
+<ul>
+  <li>
+    <a href="https://explore.data.gov/Geography-and-Environment/Worldwide-M1-Earthquakes-Past-7-Days/7tag-iwnu">
+      https://explore.data.gov/Geography-and-Environment/Worldwide-M1-Earthquakes-Past-7-Days/7tag-iwnu
+    </a>
+  </li>
+  <li>
+    <a href="http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt">
+      http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt
+    </a>
+  </li>
+</ul>
+
+The API provides the following methods:
+<ul>
+  <li>All earthquakes (system up since May 18, 2013) <a href="/earthquakes">/earthquakes</a></li>
+  <li>All earthquakes on the day of <em>timestamp</em> (Unix epoch time)
+    <a href="/earthquakes?on=<%= (DateTime.now-1.day).to_i %>">/earthquakes?on=<em>timestamp</em></a></li>
+  <li>All earthquakes since <em>timestamp</em> (Unix epoch time)
+    <a href="/earthquakes?since=<%= (DateTime.now-2.days).to_i %>">/earthquakes?since=<em>timestamp</em></a></li>
+  <li>All earthquakes with magnitude greater than <em>value</em> (float)
+    <a href="/earthquakes?over=3.5">/earthquakes?over=<em>value</em></a></li>
+  <li>All earthquakes with magnitude greater than <em>value</em> (float)
+    <a href="/earthquakes?over=3.5">/earthquakes?over=<em>value</em></a></li>
+  <li>All earthquakes within 5 miles of <em>latitude</em>,<em>longitude</em> (floats)
+    <a href="/earthquakes?near=38.8,-122.79">/earthquakes?near=<em>latitude</em>,<em>longitude</em></a></li>
+</ul>
+
+The parameters can be combined for hybrid queries.
+
+<p>This application is a Rails application.  The source code is on <a href="http://github.com/cbmanica/kobei">github</a>.</p>
+</body>
+</html>

@@ -1,4 +1,4 @@
-class EarthquakeController < ApplicationController
+class EarthquakesController < ApplicationController
   respond_to :json
   EARTH_RADIUS=3959 # miles
 

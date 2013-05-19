@@ -1,0 +1,24 @@
+= kobei
+
+This is kobei, a demonstration project to provide an API in front of real-time earthquake
+information provided by the USGS.
+
+http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt
+https://explore.data.gov/Geography-and-Environment/Worldwide-M1-Earthquakes-Past-7-Days/7tag-iwnu
+
+== Usage
+
+GET /earthquakes.json
+# Returns all earthquakes
+
+GET /earthquakes.json?on=1364582194
+# Returns earthquakes on the same day (UTC) as the unix timestamp 1364582194
+
+GET /earthquakes.json?since=1364582194
+# Returns earthquakes since the unix timestamp 1364582194
+
+GET /earthquakes.json?over=3.2
+# Returns earthquakes > 3.2 magnitude
+
+GET /earthquakes.json?near=36.6702,-114.8870
+# Returns all earthquakes within 5 miles of lat: 36.6702, lng: -114.8870

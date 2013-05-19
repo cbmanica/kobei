@@ -2,7 +2,7 @@ require_relative '../test_helper'
 require File.join Rails.root, 'app/controllers/earthquake_controller'
 
 class EarthquakeControllerTest < ActionController::TestCase
-  describe EarthquakeController do
+  describe EarthquakesController do
     FLOAT_TOLERANCE=0.00001
 
   before do
