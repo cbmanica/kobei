@@ -14,6 +14,8 @@ class Quake
   field :time, type: DateTime
 
   index :eid => 1
+  index :magnitude => 1
+  index :time => 1
 
   index({loc: Mongo::GEO2D}, {background: true})
 
