@@ -24,7 +24,7 @@ class EarthquakesController < ApplicationController
     if params[:near]
       args=params[:near].split ','
       if args.count >= 2
-        lat,long=args.map{|arg| arg.to_f}
+        lat, long=args.map { |arg| arg.to_f }
         # Friendly defaults if user passes invalid values
         radius=params[:radius] && params[:radius].to_i || DEFAULT_RADIUS
         units=params[:units] && params[:units].to_sym || DEFAULT_UNITS
@@ -43,6 +43,12 @@ class EarthquakesController < ApplicationController
       start_time=since || on.midnight
       criteria=criteria.between :time => start_time..end_time
     end
-    respond_with criteria, :except => [:location,:_id]
+    case params[:order]
+      when 'magnitude'
+        criteria=criteria.order_by [:magnitude, :desc]
+      when 'recent'
+        criteria=criteria.order_by [:time, :desc]
+    end
+    respond_with criteria, :except => [:location, :_id]
   end
 end

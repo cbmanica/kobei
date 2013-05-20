@@ -30,6 +30,22 @@ class EarthquakeControllerTest < ActionController::TestCase
       assert_equal '16', json[0]['eid']
     end
 
+    it 'must allow changing the sort order' do
+      get :index, :format => 'json', :order => 'magnitude'
+      assert_response :success
+      json=JSON.parse response.body
+      assert_equal 2, json.count
+      assert_equal '16', json[0]['eid']
+      assert_equal '4', json[1]['eid']
+
+      get :index, :format => 'json', :order => 'recent'
+      assert_response :success
+      json=JSON.parse response.body
+      assert_equal 2, json.count
+      assert_equal '16', json[1]['eid']
+      assert_equal '4', json[0]['eid']
+    end
+
     it 'must search by geo' do
       # Defaults to 5 miles
       get :index, :format => 'json', :near => '45.3,-113.4'

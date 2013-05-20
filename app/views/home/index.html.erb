@@ -22,7 +22,10 @@ information provided by the USGS:
 
 The API provides the following methods:
 <ul>
-  <li>All earthquakes (system up since May 18, 2013) <a href="earthquakes">/earthquakes</a></li>
+  <li>All earthquakes (system up since May 18, 2013)
+    <br/><a href="earthquakes">/earthquakes</a></li>
+  <li>All earthquakes sorted by <strong>type</strong> (either 'magnitude' or 'recent')
+    <br/><a href="earthquakes?order=magnitude">/earthquakes?order=<strong>type</strong></a></li>
   <li>All earthquakes on the day of <strong>timestamp</strong> (Unix epoch time)
     <br/><a href="earthquakes?on=<%= (DateTime.now-1.day).to_i %>">/earthquakes?on=<strong>timestamp</strong></a></li>
   <li>All earthquakes since <strong>timestamp</strong> (Unix epoch time)
