@@ -26,7 +26,7 @@ require 'csv'
 module EarthquakeImporter
   def self.import
     data=fetch_data
-    self.parse_data response.body_str if data
+    self.parse_data data if data
   end
 
   private
